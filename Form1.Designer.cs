@@ -31,15 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelTools = new System.Windows.Forms.Panel();
-            this.buttonAddEllipse = new System.Windows.Forms.Button();
-            this.buttonAddLine = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.panelTools.SuspendLayout();
             this.SuspendLayout();
@@ -58,84 +56,74 @@
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
             this.toolStripMenuItem1,
-            this.toolStripSeparator1,
-            this.saveToolStripMenuItem});
+            this.toolStripSeparator1});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 22);
             this.toolStripDropDownButton1.Text = "File";
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.panelToolsToolStripMenuItem});
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(101, 22);
-            this.toolStripMenuItem2.Text = "Tools";
-            // 
-            // panelToolsToolStripMenuItem
-            // 
-            this.panelToolsToolStripMenuItem.Name = "panelToolsToolStripMenuItem";
-            this.panelToolsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.panelToolsToolStripMenuItem.Text = "Panel Tools";
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Save";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(98, 6);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this.saveToolStripMenuItem.Text = "Exit";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // panelTools
             // 
             this.panelTools.BackColor = System.Drawing.Color.Silver;
+            this.panelTools.Controls.Add(this.comboBox1);
+            this.panelTools.Controls.Add(this.button2);
             this.panelTools.Controls.Add(this.button1);
-            this.panelTools.Controls.Add(this.buttonAddEllipse);
-            this.panelTools.Controls.Add(this.buttonAddLine);
             this.panelTools.Location = new System.Drawing.Point(684, 28);
             this.panelTools.Name = "panelTools";
             this.panelTools.Size = new System.Drawing.Size(116, 367);
             this.panelTools.TabIndex = 5;
             // 
-            // buttonAddEllipse
-            // 
-            this.buttonAddEllipse.Location = new System.Drawing.Point(21, 26);
-            this.buttonAddEllipse.Name = "buttonAddEllipse";
-            this.buttonAddEllipse.Size = new System.Drawing.Size(69, 50);
-            this.buttonAddEllipse.TabIndex = 1;
-            this.buttonAddEllipse.Text = "Добавить эллипс";
-            this.buttonAddEllipse.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddLine
-            // 
-            this.buttonAddLine.Location = new System.Drawing.Point(21, 82);
-            this.buttonAddLine.Name = "buttonAddLine";
-            this.buttonAddLine.Size = new System.Drawing.Size(69, 53);
-            this.buttonAddLine.TabIndex = 0;
-            this.buttonAddLine.Text = "Добавить линию";
-            this.buttonAddLine.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(21, 141);
+            this.button1.Location = new System.Drawing.Point(23, 25);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(69, 53);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Добавить квадрат";
+            this.button1.Text = "Нарисовать ";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(23, 84);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(69, 53);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Очистить";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Треугольник",
+            "Круг",
+            "Прямоугольник",
+            "Отрезок"});
+            this.comboBox1.Location = new System.Drawing.Point(12, 143);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Location = new System.Drawing.Point(73, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(531, 351);
+            this.panel1.TabIndex = 7;
             // 
             // Form1
             // 
@@ -143,6 +131,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.panelTools);
             this.Name = "Form1";
@@ -159,15 +148,13 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem panelToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.Panel panelTools;
-        private System.Windows.Forms.Button buttonAddEllipse;
-        private System.Windows.Forms.Button buttonAddLine;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
