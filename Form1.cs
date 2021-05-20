@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,24 +25,29 @@ namespace Figure3
         private void button1_Click(object sender, EventArgs e)
         {
             var graphics = pictureBox1.CreateGraphics();
-            Pen pn = new Pen(Color.Black, 5);
-            string combo = comboBox1.Text;
-            if (combo == "Отрезок")
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.ShowHelp = true;
+            MyDialog.Color = pictureBox1.ForeColor;
+            Pen pn = new Pen(MyDialog.Color);
+            pn.Width = 5.0F;
+            string figure = comboBox1.Text;
+            if (figure == "Отрезок")
             {
                 graphics.DrawLine(pn, 10, 10, 100, 50);
             }
 
-            if (combo == "Круг")
+            if (figure == "Круг")
             {
                 graphics.DrawEllipse(pn, 50, 50, 50, 50);
             }
 
-            if (combo == "Прямоугольник")
+            if (figure == "Прямоугольник")
             {
                 graphics.DrawRectangle(pn, 50, 50, 50, 50);
             }
 
-            if (combo == "Треугольник")
+            if (figure == "Треугольник")
             {
                 Point point1 = new Point(20, 20);
                 Point point2 = new Point(100, 150);
@@ -60,22 +67,66 @@ namespace Figure3
             graphics.Clear(Color.White);
         }
 
+        private void button3_Click(object sender, System.EventArgs e)
+        {
+            ColorDialog MyDialog = new ColorDialog();
+            MyDialog.AllowFullOpen = false;
+            MyDialog.ShowHelp = true;
+            MyDialog.Color = pictureBox1.ForeColor;
+
+            if (MyDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.ForeColor = MyDialog.Color;
+                Pen pn = new Pen(MyDialog.Color, 5);
+            }
+        }
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-                SaveFileDialog savedialog = new SaveFileDialog();
-                savedialog.Title = "Сохранить картинку как...";
-                savedialog.Filter = "Image Files(*.BMP)|*.BMP|Image Files(*.JPG)|*.JPG|All files (*.*)|*.*";
-                if (pictureBox1.Image != null)
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp";
+            saveFileDialog1.Title = "Сохранение";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                FileStream fs = (FileStream)saveFileDialog1.OpenFile();
+
+                switch (saveFileDialog1.FilterIndex)
                 {
-                    try
-                    {
-                        bmp.Save(savedialog.FileName, ImageFormat.Jpeg);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Невозможно сохранить изображение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    case 1:
+                        this.pictureBox1.Image.Save(fs, ImageFormat.Jpeg);
+                        break;
+
+                    case 2:
+                        this.pictureBox1.Image.Save(fs, ImageFormat.Bmp);
+                        break;
                 }
+
+                fs.Close();
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Bitmap image; 
+
+            OpenFileDialog opendialog1 = new OpenFileDialog(); 
+            opendialog1.Filter = "Image Files(*.BMP;*.JPG)|*.BMP;*.JPG;|All files (*.*)|*.*"; 
+            if (opendialog1.ShowDialog() == DialogResult.OK) 
+            {
+                try
+                {
+                    image = new Bitmap(opendialog1.FileName); 
+                    this.pictureBox1.Size = image.Size;
+                    pictureBox1.Image = image;
+                    pictureBox1.Invalidate();
+                }
+                catch
+                {
+                    DialogResult result = MessageBox.Show("Невозможно открыть выбранный файл", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
